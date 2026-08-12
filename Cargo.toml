@@ -1,0 +1,46 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/gmail-mcp-core",
+    "crates/gmail-mcp-imap",
+    "crates/gmail-mcp-server",
+    "crates/gmail-mcp-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97"
+license = "MIT"
+repository = "https://github.com/btafoya/gmail-mcp"
+
+[workspace.dependencies]
+gmail-mcp-core = { path = "crates/gmail-mcp-core" }
+gmail-mcp-imap = { path = "crates/gmail-mcp-imap" }
+gmail-mcp-server = { path = "crates/gmail-mcp-server" }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "1"
+chrono = { version = "0.4", features = ["serde", "clock"] }
+chrono-tz = "0.10"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+async-trait = "0.1"
+
+async-imap = { version = "0.11", default-features = false, features = ["runtime-tokio"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "time", "sync", "fs"] }
+tokio-native-tls = "0.3"
+native-tls = "0.2"
+futures-util = "0.3"
+mailparse = "0.16"
+ammonia = "4"
+html2md = "0.2"
+html2text = "0.17"
+
+rmcp = { version = "3", features = ["server", "macros", "schemars", "transport-io"] }
+schemars = "1"
+base64 = "0.22"
+clap = { version = "4", features = ["derive"] }
+dialoguer = "0.11"

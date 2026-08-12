@@ -1,0 +1,25 @@
+[package]
+name = "gmail-mcp-cli"
+description = "Command line interface for gmail-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "gmail-mcp"
+path = "src/main.rs"
+
+[dependencies]
+gmail-mcp-core.workspace = true
+gmail-mcp-imap.workspace = true
+gmail-mcp-server.workspace = true
+clap.workspace = true
+tokio.workspace = true
+serde_json.workspace = true
+dialoguer.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+thiserror.workspace = true
+chrono.workspace = true
+serde.workspace = true

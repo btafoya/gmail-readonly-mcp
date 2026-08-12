@@ -1,0 +1,21 @@
+[package]
+name = "gmail-mcp-core"
+description = "Domain models, configuration, and read-only mail service abstraction for gmail-mcp"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+async-trait.workspace = true
+ammonia.workspace = true
+html2md.workspace = true
+html2text.workspace = true
+mailparse.workspace = true

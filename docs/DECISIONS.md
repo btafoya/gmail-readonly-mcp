@@ -2,6 +2,37 @@
 
 This file records the decisions made during requirements gathering.
 
+## Implementation decisions
+
+Decisions made while implementing the specification:
+
+- **Async runtime:** `tokio` (required by the chosen MCP SDK and IMAP client).
+  Core domain code is runtime-agnostic; the runtime lives in the adapters.
+- **IMAP client:** `async-imap` 0.11 with `tokio-native-tls`. TLS is layered
+  manually (async-imap has no built-in TLS).
+- **MCP SDK:** `rmcp` 3.x (official Rust SDK) with the `#[tool_router]` /
+  `#[tool_handler]` macros for tools, resources, and prompts.
+- **MIME:** `mailparse`; **HTML sanitization:** `ammonia`; **HTML→Markdown:**
+  `html2md`; **HTML→text:** `html2text`. All isolated behind the core
+  `HtmlRenderer` / `MessageRenderer` traits.
+- **X-GM-THRID:** async-imap parses `X-GM-THRID` but does not expose it through
+  its `Fetch` API. The IMAP crate drives one manual `UID FETCH` via
+  `Session::run_command` + `read_response`, capturing body, flags, and both
+  Gmail IDs in a single round trip. This is the only place the raw IMAP
+  response is read directly.
+- **Application IDs:** reversible and opaque — `m:<hex(provider_id)>` (and
+  `t:`/`a:` for threads/attachments). Hex of the provider ID is deterministic
+  and decodable so the service can map an application ID back to the provider
+  identifier without keeping state.
+- **Read-only enforcement:** mailboxes are opened with `EXAMINE` and bodies
+  fetched with `BODY.PEEK`, so retrieval never sets `\Seen`; the `MailService`
+  trait has no mutation methods.
+- **CLI flag spelling:** the search body-text filter is `--body` because the
+  output-format flag `--text` already occupies the name.
+- **First run:** non-`serve` commands launch the interactive wizard when no
+  config exists; `serve` errors with a pointer to `gmail-mcp config add`
+  because stdio cannot host an interactive prompt.
+
 ## Authentication
 
 Gmail App Password over IMAP.

@@ -1,5 +1,9 @@
 # Implementation Plan — gmail-mcp
 
+> **Status: implemented.** All phases are complete. The workspace lives at the
+> repo root (`crates/gmail-mcp-{core,imap,server,cli}`). See `docs/DECISIONS.md`
+> for the concrete library and design choices made during implementation.
+
 ## Phase 1 — workspace
 
 Create:

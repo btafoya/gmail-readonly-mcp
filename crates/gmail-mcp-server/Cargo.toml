@@ -1,0 +1,25 @@
+[package]
+name = "gmail-mcp-server"
+description = "MCP stdio server adapter over the gmail-mcp read-only mail service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+gmail-mcp-core.workspace = true
+gmail-mcp-imap.workspace = true
+rmcp.workspace = true
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+futures-util.workspace = true
+base64.workspace = true
+chrono.workspace = true
+schemars.workspace = true
+
+[dev-dependencies]
+toml.workspace = true
+async-trait.workspace = true

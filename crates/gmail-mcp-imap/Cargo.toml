@@ -1,0 +1,21 @@
+[package]
+name = "gmail-mcp-imap"
+description = "Concrete IMAP implementation of the gmail-mcp read-only mail service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+gmail-mcp-core.workspace = true
+async-imap.workspace = true
+tokio.workspace = true
+tokio-native-tls.workspace = true
+native-tls.workspace = true
+futures-util.workspace = true
+mailparse.workspace = true
+serde.workspace = true
+chrono.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+async-trait.workspace = true
