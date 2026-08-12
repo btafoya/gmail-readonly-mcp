@@ -14,7 +14,7 @@ gmail-mcp/
 └── crates/
     ├── gmail-mcp-core/
     ├── gmail-mcp-imap/
-    ├── gmail-mcp-server/
+    ├── gmail-readonly-mcp-server/
     └── gmail-mcp-cli/
 ```
 

@@ -14,7 +14,7 @@ path = "src/main.rs"
 [dependencies]
 gmail-mcp-core.workspace = true
 gmail-mcp-imap.workspace = true
-gmail-mcp-server.workspace = true
+gmail-readonly-mcp-server.workspace = true
 clap.workspace = true
 tokio.workspace = true
 serde_json.workspace = true

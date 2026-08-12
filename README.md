@@ -17,7 +17,7 @@ A local Rust CLI and MCP server that gives a Claude Code agent strictly
 crates/
 ├── gmail-mcp-core/    domain models, config, read-only service trait, rendering
 ├── gmail-mcp-imap/    concrete IMAP implementation (async-imap + TLS)
-├── gmail-mcp-server/  MCP stdio server (tools, resources, prompts)
+├── gmail-readonly-mcp-server/  MCP stdio server (tools, resources, prompts)
 └── gmail-mcp-cli/     clap CLI + interactive config wizard + `serve`
 ```
 

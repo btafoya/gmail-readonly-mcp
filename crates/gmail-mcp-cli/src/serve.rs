@@ -15,7 +15,7 @@ pub async fn run(args: ServeArgs) -> Result<(), Error> {
         .init();
 
     let config = ConfigFile::load()?;
-    gmail_mcp_server::run_server(config)
+    gmail_readonly_mcp_server::run_server(config)
         .await
         .map_err(|e| Error::Internal(format!("server error: {e}")))?;
     Ok(())

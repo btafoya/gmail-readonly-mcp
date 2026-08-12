@@ -3,7 +3,7 @@ resolver = "2"
 members = [
     "crates/gmail-mcp-core",
     "crates/gmail-mcp-imap",
-    "crates/gmail-mcp-server",
+    "crates/gmail-readonly-mcp-server",
     "crates/gmail-mcp-cli",
 ]
 
@@ -17,7 +17,7 @@ repository = "https://github.com/btafoya/gmail-readonly-mcp"
 [workspace.dependencies]
 gmail-mcp-core = { path = "crates/gmail-mcp-core", version = "0.1.0" }
 gmail-mcp-imap = { path = "crates/gmail-mcp-imap", version = "0.1.0" }
-gmail-mcp-server = { path = "crates/gmail-mcp-server", version = "0.1.0" }
+gmail-readonly-mcp-server = { path = "crates/gmail-readonly-mcp-server", version = "0.1.0" }
 
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

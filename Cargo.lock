@@ -691,7 +691,7 @@ dependencies = [
  "dialoguer",
  "gmail-mcp-core",
  "gmail-mcp-imap",
- "gmail-mcp-server",
+ "gmail-readonly-mcp-server",
  "serde",
  "serde_json",
  "thiserror 2.0.20",
@@ -737,7 +737,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gmail-mcp-server"
+name = "gmail-readonly-mcp-server"
 version = "0.1.0"
 dependencies = [
  "async-trait",

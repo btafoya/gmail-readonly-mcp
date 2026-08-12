@@ -17,7 +17,7 @@ gmail-mcp/
 │   │   ├── src/
 │   │   └── tests/
 │   │       └── fixtures/
-│   ├── gmail-mcp-server/
+│   ├── gmail-readonly-mcp-server/
 │   │   ├── Cargo.toml
 │   │   └── src/
 │   └── gmail-mcp-cli/
@@ -31,7 +31,7 @@ gmail-mcp/
 ```text
 gmail-mcp-cli ────────┐
                       ├──> gmail-mcp-core ───> abstractions
-gmail-mcp-server ─────┘
+gmail-readonly-mcp-server ─────┘
                               ^
                               |
                      gmail-mcp-imap
@@ -83,7 +83,7 @@ The IMAP dependency must be isolated behind the core interfaces.
 
 ## 5. MCP server
 
-`gmail-mcp-server` adapts the core service to MCP.
+`gmail-readonly-mcp-server` adapts the core service to MCP.
 
 It owns:
 

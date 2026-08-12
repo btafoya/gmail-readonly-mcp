@@ -67,8 +67,13 @@ Cargo workspace with:
 
 - `gmail-mcp-core`
 - `gmail-mcp-imap`
-- `gmail-mcp-server`
+- `gmail-readonly-mcp-server`
 - `gmail-mcp-cli`
+
+> The MCP server crate is published as `gmail-readonly-mcp-server` because the
+> name `gmail-mcp-server` is already taken on crates.io by an unrelated
+> project. The in-repo directory and internal lib name follow the published
+> name.
 
 ## CLI
 

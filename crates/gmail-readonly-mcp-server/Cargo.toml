@@ -1,5 +1,5 @@
 [package]
-name = "gmail-mcp-server"
+name = "gmail-readonly-mcp-server"
 description = "MCP stdio server adapter over the gmail-mcp read-only mail service"
 version.workspace = true
 edition.workspace = true

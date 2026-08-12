@@ -8,7 +8,7 @@ use gmail_mcp_core::error::Error;
 use gmail_mcp_core::model::{Mailbox, MailboxStatus};
 use gmail_mcp_core::search::SearchRequest;
 use gmail_mcp_core::service::MailService;
-use gmail_mcp_server::GmailMcpServer;
+use gmail_readonly_mcp_server::GmailMcpServer;
 use rmcp::ErrorData;
 
 fn config() -> ConfigFile {
@@ -40,7 +40,7 @@ fn error_mapping_is_structured() {
         (Error::InvalidRequest("bad id".into()), "bad id"),
     ];
     for (err, needle) in cases {
-        let data: ErrorData = gmail_mcp_server::error::ServerError(err).into();
+        let data: ErrorData = gmail_readonly_mcp_server::error::ServerError(err).into();
         assert!(
             data.message.contains(needle),
             "expected `{needle}` in `{}`",
@@ -51,7 +51,7 @@ fn error_mapping_is_structured() {
 
 #[test]
 fn prompts_are_defined_and_resolvable() {
-    let prompts = gmail_mcp_server::prompts::list_prompts();
+    let prompts = gmail_readonly_mcp_server::prompts::list_prompts();
     let names: Vec<&str> = prompts.iter().map(|p| p.name.as_str()).collect();
     assert!(names.contains(&"analyze_email"));
     assert!(names.contains(&"analyze_thread"));
@@ -59,19 +59,19 @@ fn prompts_are_defined_and_resolvable() {
     let mut args = serde_json::Map::new();
     args.insert("account".into(), serde_json::json!("personal"));
     args.insert("message_id".into(), serde_json::json!("m:1"));
-    let result = gmail_mcp_server::prompts::get_prompt("analyze_email", &args).unwrap();
+    let result = gmail_readonly_mcp_server::prompts::get_prompt("analyze_email", &args).unwrap();
     assert_eq!(result.messages.len(), 1);
     match &result.messages[0].content {
         rmcp::model::ContentBlock::Text(t) => assert!(t.text.contains("m:1")),
         other => panic!("expected text content, got {other:?}"),
     }
 
-    assert!(gmail_mcp_server::prompts::get_prompt("nope", &args).is_none());
+    assert!(gmail_readonly_mcp_server::prompts::get_prompt("nope", &args).is_none());
 }
 
 #[test]
 fn resource_uris_parse() {
-    use gmail_mcp_server::resources::{ResourceTarget, parse_uri};
+    use gmail_readonly_mcp_server::resources::{ResourceTarget, parse_uri};
     assert_eq!(
         parse_uri("gmail://personal/messages/m:1"),
         Some(("personal".into(), ResourceTarget::Message("m:1".into())))
@@ -144,9 +144,9 @@ impl MailService for FakeService {
 
 #[tokio::test]
 async fn read_resource_resolves_mailboxes() {
-    let value = gmail_mcp_server::resources::read_target(
+    let value = gmail_readonly_mcp_server::resources::read_target(
         &FakeService,
-        &gmail_mcp_server::resources::ResourceTarget::Mailboxes,
+        &gmail_readonly_mcp_server::resources::ResourceTarget::Mailboxes,
     )
     .await
     .unwrap();
