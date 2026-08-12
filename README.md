@@ -23,17 +23,18 @@ crates/
 
 ## Install
 
-### From source with `cargo install`
+### From crates.io
 
 ```bash
-cargo install --path crates/gmail-mcp-cli
+cargo install gmail-mcp-cli
 # binary lands at ~/.cargo/bin/gmail-mcp
 ```
 
-Or directly from the repository:
+### From source
 
 ```bash
-cargo install --git https://github.com/btafoya/gmail-readonly-mcp.git gmail-mcp-cli
+cargo install --path crates/gmail-mcp-cli
+# or: cargo install --git https://github.com/btafoya/gmail-readonly-mcp.git gmail-mcp-cli
 ```
 
 ### Register with Claude Code
