@@ -21,10 +21,38 @@ crates/
 └── gmail-mcp-cli/     clap CLI + interactive config wizard + `serve`
 ```
 
+## Install
+
+### From source with `cargo install`
+
+```bash
+cargo install --path crates/gmail-mcp-cli
+# binary lands at ~/.cargo/bin/gmail-mcp
+```
+
+Or directly from the repository:
+
+```bash
+cargo install --git https://github.com/btafoya/gmail-readonly-mcp.git gmail-mcp-cli
+```
+
+### Register with Claude Code
+
+```bash
+gmail-mcp setup
+```
+
+This runs `claude mcp add gmail -- <path-to-gmail-mcp> serve`, registering the
+server with Claude Code. Verify with `claude mcp list`, then restart Claude
+Code. To register manually:
+
+```bash
+claude mcp add gmail -- gmail-mcp serve
+```
+
 ## Setup
 
 ```bash
-cargo build --release
 gmail-mcp config add        # interactive wizard; writes ~/.config/gmail-mcp.toml
 ```
 

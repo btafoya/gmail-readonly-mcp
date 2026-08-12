@@ -3,6 +3,7 @@
 
 mod output;
 mod serve;
+mod setup;
 mod wizard;
 
 use std::sync::Arc;
@@ -45,6 +46,8 @@ enum Command {
     Config(ConfigArgs),
     /// Run the MCP server over stdio.
     Serve(ServeArgs),
+    /// Register gmail-mcp as an MCP server in Claude Code.
+    Setup,
 }
 
 #[derive(Args)]
@@ -273,6 +276,7 @@ async fn main() {
 async fn run(cli: Cli) -> Result<(), Error> {
     match cli.command {
         Command::Serve(args) => serve::run(args).await,
+        Command::Setup => setup::run(),
         Command::Config(args) => match args.cmd {
             ConfigCmd::Add => wizard::add_account(),
         },
