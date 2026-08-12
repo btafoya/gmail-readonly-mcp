@@ -7,7 +7,12 @@ use gmail_mcp_core::error::Error;
 const SERVER_NAME: &str = "gmail";
 
 /// Register gmail-mcp with Claude Code via the `claude mcp add` command.
-pub fn run() -> Result<(), Error> {
+///
+/// `scope` is one of `local` (current project only), `project` (`.mcp.json` in
+/// the repo), or `user` (all projects). The default in setup is `user` because
+/// a personal mail server is meant to be available everywhere, unlike the
+/// CLI's conservative `local` default.
+pub fn run(scope: &str) -> Result<(), Error> {
     let exe = std::env::current_exe()
         .map_err(|e| Error::Internal(format!("cannot locate the gmail-mcp binary: {e}")))?;
 
@@ -19,12 +24,12 @@ pub fn run() -> Result<(), Error> {
     {
         eprintln!("the `claude` CLI was not found on PATH.");
         eprintln!("Install Claude Code first, then register manually:");
-        eprintln!("  claude mcp add {SERVER_NAME} -- {} serve", exe.display());
+        eprintln!("  claude mcp add --scope {scope} {SERVER_NAME} -- {} serve", exe.display());
         return Err(Error::Internal("claude CLI not found".into()));
     }
 
     let status = std::process::Command::new("claude")
-        .args(["mcp", "add", SERVER_NAME, "--"])
+        .args(["mcp", "add", "--scope", scope, SERVER_NAME, "--"])
         .arg(&exe)
         .arg("serve")
         .status()
@@ -34,7 +39,7 @@ pub fn run() -> Result<(), Error> {
         return Err(Error::Internal("`claude mcp add` failed".into()));
     }
 
-    println!("Registered gmail-mcp with Claude Code as `{SERVER_NAME}`.");
+    println!("Registered gmail-mcp with Claude Code as `{SERVER_NAME}` ({scope} scope).");
     println!("Verify with: claude mcp list");
     println!("Restart Claude Code for the change to take effect.");
 

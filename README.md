@@ -42,12 +42,14 @@ cargo install --git https://github.com/btafoya/gmail-readonly-mcp.git gmail-mcp-
 gmail-mcp setup
 ```
 
-This runs `claude mcp add gmail -- <path-to-gmail-mcp> serve`, registering the
-server with Claude Code. Verify with `claude mcp list`, then restart Claude
-Code. To register manually:
+This runs `claude mcp add --scope user gmail -- <path-to-gmail-mcp> serve`,
+registering the server with Claude Code for all projects. Use
+`--scope project` to register it in the current repo's `.mcp.json`, or
+`--scope local` to limit it to the current project. Verify with
+`claude mcp list`, then restart Claude Code. To register manually:
 
 ```bash
-claude mcp add gmail -- gmail-mcp serve
+claude mcp add --scope user gmail -- gmail-mcp serve
 ```
 
 ## Setup

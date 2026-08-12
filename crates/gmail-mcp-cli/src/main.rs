@@ -47,7 +47,7 @@ enum Command {
     /// Run the MCP server over stdio.
     Serve(ServeArgs),
     /// Register gmail-mcp as an MCP server in Claude Code.
-    Setup,
+    Setup(SetupArgs),
 }
 
 #[derive(Args)]
@@ -235,6 +235,14 @@ struct ServeArgs {
     log: String,
 }
 
+#[derive(Args, Clone)]
+struct SetupArgs {
+    /// Where to register: user (all projects), project (this repo's .mcp.json),
+    /// or local (this project only).
+    #[arg(long, value_parser = ["user", "project", "local"], default_value = "user")]
+    scope: String,
+}
+
 /// Output format flags shared by commands.
 #[derive(Args, Clone, Default)]
 struct OutputArgs {
@@ -276,7 +284,7 @@ async fn main() {
 async fn run(cli: Cli) -> Result<(), Error> {
     match cli.command {
         Command::Serve(args) => serve::run(args).await,
-        Command::Setup => setup::run(),
+        Command::Setup(args) => setup::run(&args.scope),
         Command::Config(args) => match args.cmd {
             ConfigCmd::Add => wizard::add_account(),
         },
