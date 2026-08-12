@@ -12,12 +12,13 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.97"
 license = "MIT"
-repository = "https://github.com/btafoya/gmail-mcp"
+repository = "https://github.com/btafoya/gmail-readonly-mcp"
+readme = "../../README.md"
 
 [workspace.dependencies]
-gmail-mcp-core = { path = "crates/gmail-mcp-core" }
-gmail-mcp-imap = { path = "crates/gmail-mcp-imap" }
-gmail-mcp-server = { path = "crates/gmail-mcp-server" }
+gmail-mcp-core = { path = "crates/gmail-mcp-core", version = "0.1.0" }
+gmail-mcp-imap = { path = "crates/gmail-mcp-imap", version = "0.1.0" }
+gmail-mcp-server = { path = "crates/gmail-mcp-server", version = "0.1.0" }
 
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
