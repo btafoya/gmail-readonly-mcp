@@ -1,8 +1,8 @@
 # gmail-mcp
 
-[![crates.io](https://img.shields.io/crates/v/gmail-mcp-cli.svg)](https://crates.io/crates/gmail-mcp-cli)
-[![downloads](https://img.shields.io/crates/d/gmail-mcp-cli.svg)](https://crates.io/crates/gmail-mcp-cli)
-[![license](https://img.shields.io/crates/l/gmail-mcp-cli.svg)](LICENSE)
+[![crates.io](https://img.shields.io/crates/v/gmail-readonly-mcp-server.svg)](https://crates.io/crates/gmail-readonly-mcp-server)
+[![downloads](https://img.shields.io/crates/d/gmail-readonly-mcp-server.svg)](https://crates.io/crates/gmail-readonly-mcp-server)
+[![license](https://img.shields.io/crates/l/gmail-readonly-mcp-server.svg)](LICENSE)
 [![rust](https://img.shields.io/badge/rust-1.97%2B-orange.svg)](https://www.rust-lang.org)
 [![stars](https://img.shields.io/github/stars/btafoya/gmail-readonly-mcp.svg)](https://github.com/btafoya/gmail-readonly-mcp)
 
